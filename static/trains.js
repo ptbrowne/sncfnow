@@ -5,14 +5,17 @@ var updateTrains = function($scope) {
     origin = $("#origin").text(),
     destination = $("#destination").text(),
     day = $("#day").text().replace(/\//g,"-"),
-    hour = $("#hour").text();
+    hour = $("#hour").text(),
+    url = "/" + origin + "/" + destination + "/" + day + "/" + hour;
 
-  console.log(origin, destination, day, hour)
-
-  $.getJSON("/" + origin + "/" + destination + "/" + day + "/" + hour + "?json")
+  $.getJSON(url + "?json")
   .success(function(data) {
       $scope.$apply(function() {
         $scope.trains = data;
+        console.log()
+        var title = origin + " - " + destination + " le " + day + " à " + hour + "h";
+            url = url;
+        history.pushState(null, origin + " - " + destination + " le " + day + " à " + hour + "h", url)
       })
       $("#waiting").hide();
   })
@@ -36,3 +39,7 @@ var trainCtrl = function($scope) {
       }
     });
 }
+
+$(function () {
+  $("#origin").focus()
+});

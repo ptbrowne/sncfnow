@@ -11,6 +11,7 @@ h1, h2 {
 }
 
 h1 {
+    font-family:Lobster;
     font-size:1.5em;
 }
 
@@ -30,20 +31,19 @@ th {
     font-variant:small-caps;
 }
 
- #footer {
-    margin-top:2em;
-    position: absolute;
-    bottom: 1em;
-    font-size:0.8em;
- }
+tr {
+    border-bottom:1px solid #DDD;
+}
 
- #container {
+
+#container {
     background:#EEE;
     padding:20px;
     border-radius: 1em;
-    box-shadow: 5px 5px 100px #BBB;
+    box-shadow: 5px 5px 50px #AAA;
     position:relative;
- }
+    border:2px white solid;
+}
 
 #waiting {
     display:none;
@@ -53,3 +53,13 @@ th {
 
 [contenteditable="true"] { padding: 5px; border: 1px dashed #BBB; }
 [contenteditable="true"]:hover { border: 1px dashed #0090D2; }
+
+#footer {
+    margin-top:2em;
+    position: absolute;
+    bottom: -6em;
+    right: 1em;
+    opacity: 0.5;
+    font-size:0.8em;
+    text-align:right;
+}

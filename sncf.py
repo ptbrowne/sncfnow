@@ -33,7 +33,6 @@ def get_trains(origin, destination, date):
     res = []
     for j in journeys:
         spans = j.find_all("span")
-        print spans
         res.append((spans[0].text, spans[1].text, spans[3].text))
     return res
 
