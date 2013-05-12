@@ -3,6 +3,7 @@
 
 import requests
 import json
+import os
 
 from datetime import datetime, timedelta, date
 from bs4 import BeautifulSoup
@@ -81,4 +82,4 @@ def get_trains_complete(origin, destination, day, hour):
     return render_template("trains.html", **kw)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=int(os.environ.get("PORT", 5000)))
