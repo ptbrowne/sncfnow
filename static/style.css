@@ -1,0 +1,55 @@
+body {
+    font-family: Open Sans;
+    font-weight: 300;
+    width:320px;
+    margin:auto;
+    margin-top:3em;
+}
+
+h1, h2 {
+    font-weight:300;
+}
+
+h1 {
+    font-size:1.5em;
+}
+
+h2 {
+    font-size:1.2em;
+}
+
+table {
+    border-collapse: collapse;
+    border-width: 0.5px;
+    font-weight:200;
+    width:100%;
+}
+
+th {
+    text-align: left;
+    font-variant:small-caps;
+}
+
+ #footer {
+    margin-top:2em;
+    position: absolute;
+    bottom: 1em;
+    font-size:0.8em;
+ }
+
+ #container {
+    background:#EEE;
+    padding:20px;
+    border-radius: 1em;
+    box-shadow: 5px 5px 100px #BBB;
+    position:relative;
+ }
+
+#waiting {
+    display:none;
+    position: absolute;
+    right:1em;
+}
+
+[contenteditable="true"] { padding: 5px; border: 1px dashed #BBB; }
+[contenteditable="true"]:hover { border: 1px dashed #0090D2; }

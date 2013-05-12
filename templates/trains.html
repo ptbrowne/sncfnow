@@ -1,0 +1,48 @@
+<doctype>
+<html ng-app>
+<head>
+    <title>{{ origin }} - {{ destination }} le {{ date_.strftime("%d/%m/%Y") }} à {{ date_.strftime("%H").lstrip("0") }}h</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+
+    <script type="text/javascript">
+        var trains = {{ trains | tojson | safe }};
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='trains.js') }}"></script>
+</head>
+<body>
+    <div id="container" ng-controller="trainCtrl">
+        <div id="waiting"><img src="{{ url_for('static', filename='waiting.gif') }}"></img></div>
+        <h1>
+            <span class="editable" contenteditable="true" id="origin">{{ origin }}</span>
+             →
+            <span class="editable" contenteditable="true" id="destination">{{ destination }}</span>
+        </h1>
+        <h2>le
+            <span class="editable" contenteditable="true" id="day">{{ date_.strftime("%d/%m/%Y") }}</span>
+            à
+            <span class="editable" contenteditable="true" id="hour">{{ date_.strftime("%H").lstrip("0") }}</span>
+            h
+        </h2>
+        <table>
+            <tr>
+                <th>départ</th>
+                <th>arrivée</th>
+                <th>durée</th>
+            </tr>
+            <tr ng-repeat="train in trains">
+                {% raw %}
+                <td>{{ train[0] }}</td>
+                <td>{{ train[1] }}</td>
+                <td>{{ train[2] }}</td>
+                {% endraw %}
+            </tr>
+        </table>
+        <!-- <footer id="footer">my other projects on <a href="http://github.com/phisto">github</a></footer> -->
+    </div>
+</body>
+</html>
