@@ -51,7 +51,7 @@ def get_trains_orig_dest(origin, destination):
 
 @app.route("/")
 def index():
-    return "Hello World !"
+    return redirect(url_for(get_trains_orig_dest("paris", "brest")))
 
 @app.route("/<origin>/<destination>/<day>/<hour>")
 def get_trains_complete(origin, destination, day, hour):
