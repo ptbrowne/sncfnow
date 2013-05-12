@@ -1,1 +1,1 @@
-web: python sncf.py
+web: gunicorn sncf:app
