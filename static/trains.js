@@ -1,5 +1,5 @@
 var updateTrains = function($scope) {
-  $("#waiting").toggle();
+  $("#waiting").show();
 
   var
     origin = $("#origin").text(),
@@ -14,7 +14,7 @@ var updateTrains = function($scope) {
       $scope.$apply(function() {
         $scope.trains = data;
       })
-      $("#waiting").toggle();
+      $("#waiting").hide();
   })
   .error(function(err) {
     console.log(err.data)
