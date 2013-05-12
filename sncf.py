@@ -49,6 +49,10 @@ def get_trains_orig_dest(origin, destination):
 
     return redirect(url)
 
+@app.route("/")
+def index():
+    return "Hello World !"
+
 @app.route("/<origin>/<destination>/<day>/<hour>")
 def get_trains_complete(origin, destination, day, hour):
     today = date.today()
@@ -76,5 +80,5 @@ def get_trains_complete(origin, destination, day, hour):
         return json.dumps(trains)
     return render_template("trains.html", **kw)
 
-
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run()
