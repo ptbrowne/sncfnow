@@ -1,9 +1,17 @@
+
 body {
     font-family: Open Sans;
     font-weight: 300;
     width:320px;
     margin:auto;
     margin-top:3em;
+}
+
+@media screen and (max-width: 640px) {
+    body {
+        width:90%;
+        margin:3em auto;
+    }
 }
 
 h1, h2 {
