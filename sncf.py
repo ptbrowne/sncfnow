@@ -51,7 +51,7 @@ def get_trains_orig_dest(origin, destination):
 
 @app.route("/")
 def index():
-    return redirect(url_for(get_trains_orig_dest("paris", "brest")))
+    return render_template("index.html")
 
 @app.route("/<origin>/<destination>/<day>/<hour>")
 def get_trains_complete(origin, destination, day, hour):
@@ -64,11 +64,6 @@ def get_trains_complete(origin, destination, day, hour):
     else:
         day = datetime.strptime(day, "%d-%m-%Y")
     date_ = day + timedelta(hours=int(hour.lstrip("0")) )
-    trains = [
-        ("21h44", "30H30", "5"),
-        ("21h44", "30H30", "6"),
-        ("21h44", "30H30", "7"),
-    ]
     trains = get_trains(origin, destination, date_)
 
     kw = {}
@@ -81,4 +76,9 @@ def get_trains_complete(origin, destination, day, hour):
     return render_template("trains.html", **kw)
 
 if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 5000)))
+    if os.environ.get("PORT"):
+        debug=False
+    else:
+        debug=True
+
+    app.run(debug=debug, port=int(os.environ.get("PORT", 5000)))

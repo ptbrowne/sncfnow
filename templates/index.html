@@ -1,0 +1,39 @@
+<!doctype>
+<html ng-app>
+<head>
+    <title>SNCF now!</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300|Lobster|Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='trains.js') }}"></script>
+</head>
+<body>
+    <div id="container" ng-controller="trainCtrl">
+        <h1>SNCF Now !</h1>
+        <p>
+            Trouvez vos trains plus rapidement et bookmarquez les trajets que vous faites
+            le plus souvent.
+        </p>
+        <p>
+            Les URLs sont tellement simples que vous pourrez faire
+            vos recherches sans même passer par le champ de recherche :D !
+        </p>
+        <p style="text-align:center">
+            <a href="{{ url_for('get_trains_orig_dest', origin='paris', destination='brest') }}">Paris-Brest maintenant</a><br/>
+            <a href="{{ url_for('get_trains_complete', origin='nice', destination='cannes', day='auj', hour='17') }}">
+                Nice-Cannes aujourd'hui 17h</a><br/>
+            <a href="{{ url_for('get_trains_complete', origin='paris', destination='compiegne', day='dem', hour='15') }}">
+                Paris-Compiègne demain 15h
+            </a>
+        </p>
+        <div id="footer">
+            data from
+            <a href="http://voyages-sncf.com"><img src="{{ url_for('static', filename='sncf.png') }}" height="30px"></a><br/>
+            all the code is on <a href="http://github.com/phisto/sncfnow">github</a>
+        </div>
+    </div>
+</body>
+</html>
