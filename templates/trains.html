@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 
     <script type="text/javascript">
-        var trains = {{ trains | tojson | safe }};
+        var trains = [];
     </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='trains.js') }}"></script>

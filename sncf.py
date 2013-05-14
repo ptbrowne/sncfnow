@@ -64,14 +64,13 @@ def get_trains_complete(origin, destination, day, hour):
     else:
         day = datetime.strptime(day, "%d-%m-%Y")
     date_ = day + timedelta(hours=int(hour.lstrip("0")) )
-    trains = get_trains(origin, destination, date_)
 
     kw = {}
-    kw["trains"] = trains
     kw["origin"] = origin
     kw["destination"] = destination
     kw["date_"] = date_
     if "json" in request.args:
+        trains = get_trains(origin, destination, date_)
         return json.dumps(trains)
     return render_template("trains.html", **kw)
 

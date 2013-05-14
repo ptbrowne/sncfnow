@@ -1,45 +1,57 @@
-var updateTrains = function($scope) {
-  $("#waiting").show();
+var
+  time = 1200,
+  complete = {"width" : "100%", "visibility" : "visible", "transition" : "0s"},
+  finished = {"transition-property" : "width", "transition" : time + "ms width linear", "width" : "16px"},
 
-  var
-    origin = $("#origin").text(),
-    destination = $("#destination").text(),
-    day = $("#day").text().replace(/\//g,"-"),
-    hour = $("#hour").text(),
-    url = "/" + origin + "/" + destination + "/" + day + "/" + hour;
+  updateTrains = function($scope) {
+    $("hr").css("visibility", "hidden");
+    $("#waiting").css("visibility", "visible");
 
-  $.getJSON(url + "?json")
-  .success(function(data) {
+    var
+      origin = $("#origin").text(),
+      destination = $("#destination").text(),
+      day = $("#day").text().replace(/\//g,"-"),
+      hour = $("#hour").text(),
+      url = "/" + origin + "/" + destination + "/" + day + "/" + hour;
+
+    $.getJSON(url + "?json")
+    .success(function(data) {
       $scope.$apply(function() {
         $scope.trains = data;
-        console.log()
         var title = origin + " - " + destination + " le " + day + " à " + hour + "h";
             url = url;
         history.pushState(null, origin + " - " + destination + " le " + day + " à " + hour + "h", url)
       })
-      $("#waiting").hide();
-  })
-  .error(function(err) {
-    console.log(err.data)
-  })
-}
-updateTrains = _.debounce(updateTrains, 1200)
+      $("#waiting").css("visibility", "hidden");
+      $("hr").css(complete);
+    })
+    .error(function(err) {
+      console.log(err.data)
+    })
+  },
 
-var trainCtrl = function($scope) {
+  updateTrainsDebounced = _.debounce(updateTrains, time),
+
+  trainCtrl = function($scope) {
     $scope.trains = trains
-    console.log(trains)
-
 
     $(".editable").keypress(function(event) {
       if (event.which == 13) {
-        event.preventDefault()
-      }
-      else {
+        event.preventDefault();
         updateTrains($scope);
       }
-    });
-}
+      else {
+        updateTrainsDebounced($scope);
+        var $hr = $("hr");
+        $hr.css(complete);
+        setTimeout(function () { $hr.css(finished) }, 5);
+      }
 
-$(function () {
-  $("#origin").focus()
-});
+    });
+
+    $(function () {
+      $("#origin").focus();
+      updateTrains($scope);
+    });
+  }
+;
