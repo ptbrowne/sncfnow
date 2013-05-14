@@ -5,12 +5,14 @@ body {
     width:320px;
     margin:auto;
     margin-top:3em;
+    margin-bottom: 3em;
 }
 
 @media screen and (max-width: 640px) {
     body {
         width:90%;
-        margin:3em auto;
+        font-size:2em;
+        margin:1em auto;
     }
 }
 
@@ -32,6 +34,7 @@ table {
     border-width: 0.5px;
     font-weight:200;
     width:100%;
+    font-size: inherit;
 }
 
 th {
@@ -48,15 +51,25 @@ tr {
     background:#EEE;
     padding:20px;
     border-radius: 1em;
-    box-shadow: 5px 5px 50px #AAA;
+    box-shadow: 5px 5px 20px #DDD;
     position:relative;
     border:2px white solid;
+    margin-bottom: 6em
+}
+
+#loading_bar {
+    background:#9f9f9f;
+    border:0;
+    height:2px;
+    position: relative;
+    top:0.5em;
 }
 
 #waiting {
-    display:none;
-    position: absolute;
-    right:1em;
+    visibility:hidden;
+    position:relative;
+    text-align:center;
+    top:-0.5em;
 }
 
 [contenteditable="true"] { padding: 5px; border: 1px dashed #BBB; }
@@ -65,7 +78,7 @@ tr {
 #footer {
     margin-top:2em;
     position: absolute;
-    bottom: -6em;
+    bottom: -5em;
     right: 1em;
     opacity: 0.5;
     font-size:0.8em;

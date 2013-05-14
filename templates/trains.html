@@ -17,7 +17,6 @@
 <body>
     <div id="container" ng-controller="trainCtrl">
         <h1>SNCF Now !</h1>
-        <div id="waiting"><img src="{{ url_for('static', filename='waiting.gif') }}"></img></div>
         <h2>
             de
             <span class="editable" contenteditable="true" id="origin">{{ origin }}</span>
@@ -30,6 +29,8 @@
             <span class="editable" contenteditable="true" id="hour">{{ date_.strftime("%H").lstrip("0") }}</span>
             h ?
         </h2>
+        <hr id="loading_bar">
+        <div id="waiting"><img src="{{ url_for('static', filename='waiting.gif') }}"></img></div>
         <table>
             <tr>
                 <th>départ</th>
